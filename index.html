@@ -1,5 +1,28 @@
 <html>
+<head>
+<title>Calculator Storage</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="https://calculator-6586.restdb.io/rest/_jsapi.js"></script>
+<script type="text/javascript"> 
+  jQuery(document).ready(function() {  
+  	var db = new restdb("5c7161955382e3539c928ffd");
+  	var query = {}; // get all records
+	var hints = {"$max": 10, "$orderby": {"_id": -1}}; // top ten, sort by creation id in descending order
+	db.calculations.find(query, hints, function(err, res){
+	  if (!err){
+	    // res is an array of calculations instances
+	    for (var i = res.length - 1; i >= 0; i--) {
+	    	console.log(res[i]);
+			$('#json').append(res[i].input + " => " + res[i].result + "\n");    	
+	    }
+
+	  }
+	});
+});
+</script>
+</head>
 <body>
-    <h1>hello</h1>
+	<h3>Calculations:</h3>
+	<pre id="json" />
 </body>
 </html>
