@@ -13,7 +13,8 @@
         // res is an array of calculations instances
         for (var i = res.length - 1; i >= 0; i--) {
           console.log(res[i]);
-          $('#json').append(res[i].input + " => " + res[i].result + "\n");    	
+          $('#loading').hide();
+          $('#json').append(res[i].input + " => " + res[i].result + "\n");
         }
       }
     });
@@ -22,6 +23,7 @@
 </head>
 <body>
   <h3>Calculations:</h3>
+  <iframe id="loading" src="https://giphy.com/embed/3oEjI6SIIHBdRxXI40" width="100" height="100" frameBorder="0"></iframe>
   <pre id="json" />
 </body>
 </html>
